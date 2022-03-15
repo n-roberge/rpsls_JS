@@ -1,5 +1,6 @@
 "use strict"
 const prompt = require("prompt-sync")();
+const scripts = require("./scripts");
 
 class User {
     constructor(numberOfGamesToPlay,record){
@@ -21,10 +22,10 @@ class User {
 
         
 
-    chooseRPSLS(gestures){
+    chooseRPSLS(){
         console.log(`Choose one of the following by entering the number of the choice: `);
-        for(let i = 0; i < gestures.length; i++){
-            console.log(`<${i}> ${gestures[i]}`);
+        for(let i = 0; i < scripts.gestures.length; i++){
+            console.log(`<${i}> ${scripts.gestures[i]}`);
         }
         let choice = prompt(" ",validation);
         return choice;
@@ -36,17 +37,15 @@ class Player extends User{
     constructor(numberOfGamesToPlay,record,playerNumber){
         super(numberOfGamesToPlay, record);
         this.playerNumber = playerNumber;
-
     }
 }
 
 class AI extends User{
     constructor(numberOfGamesToPlay,record){
-        super(numberOfGamesToPlay);
-        super(record);
+        super(numberOfGamesToPlay,record);
     }
-    chooseRPSLS(gestures){
-        let choice = math.floor(math.random() * gestures.length)
+    chooseRPSLS(){
+        let choice = scripts.gestures[math.floor(math.random() * scripts.gestures.length)];
         return choice;
     }
 }
