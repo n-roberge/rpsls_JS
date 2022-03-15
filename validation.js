@@ -1,7 +1,7 @@
 "use strict"
 
 function numberOfPlayersValidation(input){
-    if(parseInt(input > 0) && parseInt(input) < 10){
+    if(parseInt(input) > 0 && parseInt(input) < 10){
         return true;
     } else {return false}
 }
