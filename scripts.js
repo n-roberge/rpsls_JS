@@ -35,18 +35,7 @@ function selectGames(){
     return numberOfGames;
 };
 
-function promptFor(question, valid) {
-    let isValid;
-    do {
-        var response = prompt(question);
-        if (response !== null) {
-        response.trim();
-        }
-        isValid = valid(response);
-    } while (response === "" || isValid === false || response === null);
 
-    return response;
-}
 
 
 //exports
