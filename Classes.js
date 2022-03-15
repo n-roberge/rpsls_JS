@@ -50,3 +50,6 @@ class AI extends User{
         return choice;
     }
 }
+
+module.exports.Player = Player;
+module.exports.AI = AI;
