@@ -52,9 +52,34 @@ class Game {
         return requiredWins;
     };
 
+    aiChoice(){
+        let players = this.selectPlayers();
+        let computerChoice = Math.random()
+        computerChoice = Math.floor((computerChoice * 5) + 1);
+
+        if (computerChoice == 1){
+            computerChoice = "Rock"
+        }
+        else if(computerChoice == 2){
+            computerChoice = "Paper";
+        }
+        else if(computerChoice == 3){
+            computerChoice = "Scissor";
+        }
+        else if(computerChoice == 4){
+            computerChoice = "Lizard";
+        }
+        else{
+            computerChoice = "Spock";
+        } 
+
+        players[1]["choice"] = computerChoice
+        return players;
+    };
+
     startGame(){
         //player chooses gesture
-        classes.players.chooseRPSLS();
+        //classes.players.chooseRPSLS();
 
         //AI chooses gesture if needed
 
@@ -67,7 +92,7 @@ class Game {
 
 //test
 let newGame = new Game()
-let test = newGame.selectPlayers()
+let test = newGame.aiChoice()
 console.log(test)
 
 //exports
