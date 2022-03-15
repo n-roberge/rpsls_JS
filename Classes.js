@@ -3,9 +3,10 @@ const prompt = require("prompt-sync")();
 const scripts = require("./game");
 
 class User {
-    constructor(numberOfGamesToPlay,record){
+    constructor(numberOfGamesToPlay,record,choice){
         this.numberOfGamesToPlay = numberOfGamesToPlay;
         this.record = record;
+        this.choice = choice;
     }
     getWinLossRecord() {
         return this.record;
@@ -27,7 +28,7 @@ class User {
         for(let i = 0; i < scripts.gestures.length; i++){
             console.log(`<${i}> ${scripts.gestures[i]}`);
         }
-        let choice = prompt(" ",validation);
+        choice = prompt(" ",validation);
         return choice;
     }
     
@@ -35,14 +36,14 @@ class User {
 
 class Player extends User{
     constructor(numberOfGamesToPlay,record,playerNumber){
-        super(numberOfGamesToPlay, record);
+        super(numberOfGamesToPlay, record,choice);
         this.playerNumber = playerNumber;
     }
 }
 
 class AI extends User{
-    constructor(numberOfGamesToPlay,record){
-        super(numberOfGamesToPlay,record);
+    constructor(numberOfGamesToPlay,record,choice){
+        super(numberOfGamesToPlay,record,choice);//Nick - added choice here, need to test
     }
     chooseRPSLS(){
         let choice = scripts.gestures[math.floor(math.random() * scripts.gestures.length)];

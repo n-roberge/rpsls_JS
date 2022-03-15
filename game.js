@@ -38,15 +38,21 @@ class Game {
         return numberOfGames;
     };
 
-    game(){
-        let playerChoice = classes.Player.chooseRPSLS
+    choice(){
+        //TODO validate
+        let userChoice = prompt("Choose 0 for Rock\nChoose 1 for Paper\nChoose 2 for Scissors\nChoose 3 for Lizard\nChoose 4 for Spock\n");
+        //let userChoice = promptFor("Choose 0 for Rock\nChoose 1 for Paper\nChoose 2 for Scissors\nChoose 3 for Lizard\nChoose 4 for Spock\n", XXXX);
+
+        return userChoice;
+    };
+
+    initiate(){
+        
     };
 }
 
 //test
 let newGame = new Game()
-newGame.welcomeMessage();
-newGame.selectPlayers();
 
 //exports
 module.exports.game = Game
