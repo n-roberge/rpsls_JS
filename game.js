@@ -14,6 +14,7 @@ class Game {
 
         //Rules, select gesture
         console.log("\n\nScissors cuts Paper\nPaper covers Rock\nLizard poisons Spock\nSpock smashes Scissors\nScissors decapitates lizard\nLizard eats paper\nPaper disaproves Spock\nSpock vaporizes Rock\nRock crushes Scissors")
+    };
     
     selectPlayers(){
         let players = [];
@@ -76,9 +77,9 @@ class Game {
         return players; //TODO not sure if this hsould return just the choice
     };
 
-    userChoice(){
-        //access chooseRPSLS
-    };
+    // userChoice(){
+    //     //access chooseRPSLS
+    // };
     
     roundWinner(){
         //let userChoice = some method
