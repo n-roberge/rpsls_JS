@@ -1,5 +1,5 @@
 "use strict"
-const prompt = require("prompt-sync");
+const prompt = require("prompt-sync")();
 
 class User {
     constructor(numberOfGamesToPlay,record){
@@ -34,9 +34,9 @@ class User {
 
 class Player extends User{
     constructor(numberOfGamesToPlay,record,playerNumber){
+        super(numberOfGamesToPlay, record);
         this.playerNumber = playerNumber;
-        super(numberOfGamesToPlay);
-        super(record);
+
     }
 }
 

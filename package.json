@@ -10,8 +10,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-<<<<<<< HEAD
-=======
   "repository": {
     "type": "git",
     "url": "git+https://github.com/n-roberge/rpsls_JS.git"
@@ -20,7 +18,6 @@
     "url": "https://github.com/n-roberge/rpsls_JS/issues"
   },
   "homepage": "https://github.com/n-roberge/rpsls_JS#readme",
->>>>>>> 613e4c47ae67a851fac457414a78c116808475d6
   "dependencies": {
     "prompt-sync": "^4.2.0"
   }
