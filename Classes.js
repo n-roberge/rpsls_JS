@@ -1,6 +1,6 @@
 "use strict"
 const prompt = require("prompt-sync")();
-const scripts = require("./scripts");
+const scripts = require("./game");
 
 class User {
     constructor(numberOfGamesToPlay,record){
