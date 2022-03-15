@@ -6,11 +6,7 @@ const prompt = require("prompt-sync")();
 const Validation = require("./validation");
 
 class Game {
-    constructor(){
-        this.validation = new Validation();
-        this.player = new classes.Player();
-        this.AI = new classes.AI();
-    }
+
     gestures = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
 
     //Welcome, select number of games
