@@ -27,8 +27,8 @@ function selectPlayers(){
 
 //test
 
-let test = selectPlayers()
-console.log(test)
+// let test = selectPlayers()
+// console.log(test)
 
 function selectGames(){
     let numberOfGames = promptFor("How many games (3 or 5)?", numberOfGamesValidation);

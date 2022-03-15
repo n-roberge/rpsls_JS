@@ -7,7 +7,7 @@ function numberOfPlayersValidation(input){
 }
 
 function numberOfGamesValidation(input){
-    if(parseInt(input === 3) || parseInt(input) === 5){
+    if(parseInt(input) === 3 || parseInt(input) === 5){
         return true;
     } else {return false}
 }
