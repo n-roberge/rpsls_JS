@@ -3,13 +3,19 @@
 //imports
 const classes = require("./Classes");
 const prompt = require("prompt-sync")();
+const Validation = require("./validation");
 
 class Game {
+    constructor(){
+        this.validation = new Validation();
+        this.player = new classes.Player();
+        this.AI = new classes.AI();
+    }
     gestures = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
 
     //Welcome, select number of games
     welcomeMessage(){
-        console.log("Welcome to Rock Paper Sissors Lizard Spock\n\nEach match will be best of three or five games.\nUse the number keys to enter your selection")
+        console.log("Welcome to Rock Paper Scissors Lizard Spock\n\nEach match will be best of three or five games.\nUse the number keys to enter your selection")
 
         //Rules, select gesture
         console.log("\n\nScissors cuts Paper\nPaper covers Rock\nLizard poisons Spock\nSpock smashes Scissors\nScissors decapitates lizard\nLizard eats paper\nPaper disaproves Spock\nSpock vaporizes Rock\nRock crushes Scissors")
