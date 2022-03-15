@@ -5,5 +5,6 @@ const scripts = require('./game');
 
 //execute game
 //test
-game.game.welcomeMessage()
+let game = new scripts.game();
+game.welcomeMessage()
 
