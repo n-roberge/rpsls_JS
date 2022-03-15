@@ -11,15 +11,14 @@ function selectPlayers(){
     let numberOfPlayers = prompt("How many players?:");
 
     if (Number(numberOfPlayers) === 1){
-        //create AI player, set player one to player one
-        //test
-        console.log("one player")
+        players[0] = new classes.Player("","",0)
+        //create AI player
+        players[1] = new classes.AI("","")
     }
 
     else {
         for (let i = 0; i < Number(numberOfPlayers); i++){
-            players[i] = new classes.Player("","",i)
-            
+            players[i] = new classes.Player("","",i)     
         }
     }
     return players;
