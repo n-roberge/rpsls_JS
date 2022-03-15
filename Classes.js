@@ -20,9 +20,6 @@ class User {
     setNumberOfGamesToPlay(input){
         numberOfGamesToPlay = parseInt(input);
     }
-
-        
-
     chooseRPSLS(){
         console.log(`Choose one of the following by entering the number of the choice: `);
         for(let i = 0; i < scripts.gestures.length; i++){
@@ -30,13 +27,12 @@ class User {
         }
         choice = prompt(" ",validation);
         return choice;
-    }
-    
+    }   
 }
 
 class Player extends User{
-    constructor(numberOfGamesToPlay,record,playerNumber){
-        super(numberOfGamesToPlay, record,choice);
+    constructor(numberOfGamesToPlay,record,choice,playerNumber){
+        super(numberOfGamesToPlay, record, choice);
         this.playerNumber = playerNumber;
     }
 }

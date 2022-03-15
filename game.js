@@ -27,32 +27,46 @@ class Game {
 
         else {
             for (let i = 0; i < Number(numberOfPlayers); i++){
-                players[i] = new classes.Player("","",i)     
+                players[i] = new classes.Player("","","",i)     
             }
         }
         return players;
     };
 
+    //returns number of requried wins based on amount of games
     selectGames(){
+        let requiredWins;
+        //TODO validation
         let numberOfGames = prompt("How many games (3 or 5)?");
-        return numberOfGames;
+
+        switch (numberOfGames){
+            case "3":
+                requiredWins = 2;
+                break;
+            case "5":
+                requiredWins = 3;
+                break;
+        }
+        return requiredWins;
     };
 
-    choice(){
-        //TODO validate
-        let userChoice = prompt("Choose 0 for Rock\nChoose 1 for Paper\nChoose 2 for Scissors\nChoose 3 for Lizard\nChoose 4 for Spock\n");
-        //let userChoice = promptFor("Choose 0 for Rock\nChoose 1 for Paper\nChoose 2 for Scissors\nChoose 3 for Lizard\nChoose 4 for Spock\n", XXXX);
+    startGame(){
+        //player chooses gesture
+        classes.players.chooseRPSLS();
 
-        return userChoice;
-    };
+        //AI chooses gesture if needed
 
-    initiate(){
-        
+        //Round winner
+
+        //Next round or finish depending on requiredWins
+
     };
 }
 
 //test
 let newGame = new Game()
+let test = newGame.selectPlayers()
+console.log(test)
 
 //exports
 module.exports.game = Game
