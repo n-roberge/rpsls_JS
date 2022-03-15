@@ -1,3 +1,5 @@
+"use stirct"
+
 //import scripts
 const scripts = require('./scripts');
 

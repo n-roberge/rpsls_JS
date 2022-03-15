@@ -1,7 +1,7 @@
 {
   "name": "rpsls",
   "version": "1.0.0",
-  "description": "",
+  "description": "Rock Paper Scissors Lizard Spock for JavaScript",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,6 +10,17 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+<<<<<<< HEAD
+=======
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n-roberge/rpsls_JS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/n-roberge/rpsls_JS/issues"
+  },
+  "homepage": "https://github.com/n-roberge/rpsls_JS#readme",
+>>>>>>> 613e4c47ae67a851fac457414a78c116808475d6
   "dependencies": {
     "prompt-sync": "^4.2.0"
   }
