@@ -22,10 +22,10 @@ class User {
     }
     chooseRPSLS(){
         console.log(`Choose one of the following by entering the number of the choice: `);
-        for(let i = 0; i < scripts.gestures.length; i++){
-            console.log(`<${i}> ${scripts.gestures[i]}`);
+        for(let i = 0; i < scripts.game.gestures.length; i++){
+            console.log(`<${i}> ${scripts.game.gestures[i]}`);
         }
-        choice = prompt(" ",validation);
+        choice = prompt(" ");
         return choice;
     }   
 }
@@ -42,7 +42,7 @@ class AI extends User{
         super(numberOfGamesToPlay,record,choice);//Nick - added choice here, need to test
     }
     chooseRPSLS(){
-        let choice = scripts.gestures[math.floor(math.random() * scripts.gestures.length)];
+        let choice = scripts.game.gestures[math.floor(math.random() * scripts.game.gestures.length)];
         return choice;
     }
 }

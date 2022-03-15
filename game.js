@@ -3,7 +3,6 @@
 //imports
 const classes = require("./Classes");
 const prompt = require("prompt-sync")();
-const Validation = require("./validation");
 
 class Game {
 
@@ -15,8 +14,7 @@ class Game {
 
         //Rules, select gesture
         console.log("\n\nScissors cuts Paper\nPaper covers Rock\nLizard poisons Spock\nSpock smashes Scissors\nScissors decapitates lizard\nLizard eats paper\nPaper disaproves Spock\nSpock vaporizes Rock\nRock crushes Scissors")
-    }
-
+    
     selectPlayers(){
         let players = [];
         let numberOfPlayers = prompt("How many players?:");
