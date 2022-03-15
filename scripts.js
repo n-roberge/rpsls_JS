@@ -31,3 +31,4 @@ function selectGames(){
 //exports
 module.exports.players = selectPlayers
 module.exports.games = selectGames
+module.exports.gestures = gestures
