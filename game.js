@@ -52,6 +52,7 @@ class Game {
         return requiredWins;
     };
 
+    //if there is an AI, randomly selects a gesture
     aiChoice(){
         let players = this.selectPlayers();
         let computerChoice = Math.random()
@@ -74,19 +75,77 @@ class Game {
         } 
 
         players[1]["choice"] = computerChoice
-        return players;
+        return players; //TODO not sure if this hsould return just the choice
     };
 
-    startGame(){
-        //player chooses gesture
-        //classes.players.chooseRPSLS();
+    userChoice(){
+        //access chooseRPSLS
+    };
+    
+    roundWinner(){
+        //let userChoice = some method
+        let computerChoice = this.aiChoice()
+        let draw = "Draw"
+        let userWins = "User wins"
+        let aiWins = "Computer wins"
+        let result;
 
-        //AI chooses gesture if needed
-
-        //Round winner
-
-        //Next round or finish depending on requiredWins
-
+        if(computerChoice == "Rock"){
+            if(userChoice == "paper" || userChoice == "spock"){
+            result = userWins;
+            }
+            else if(userChoice == "rock"){
+            result = draw;
+            }
+            else{
+            result = aiWins;
+            }
+        }
+        else if(computerChoice == "Paper"){
+            if(userChoice == "scissor" || userChoice == "lizard"){
+                result = userWins;
+            }
+            else if(userChoice == "paper"){
+                result = draw;
+            }
+            else{
+                result = aiWins;
+            }
+        }
+        else if(computerChoice == "Scissor"){
+            if(userChoice == "spock" || userChoice == "rock"){
+                result = userWins;
+            }
+            else if(userChoice == "scissor"){
+                result = draw;
+            }
+            else{
+                result = aiWins;
+            }
+        }   
+        else if(computerChoice == "Lizard"){
+            if(userChoice == "rock" || userChoice == "scissor"){
+                result = userWins;
+            }
+            else if(userChoice == "lizard"){
+                result = draw;
+            }
+            else{
+                result = aiWins;
+            }   
+        }
+        else if(computerChoice == "Spock"){
+            if(userChoice == "lizard" || userChoice == "paper"){
+                result = userWins;
+            }
+            else if(userChoice == "spock"){
+                result = draw;
+            }
+            else{
+                result = aiWins;
+            }
+        }
+        return result
     };
 }
 
