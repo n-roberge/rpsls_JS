@@ -1,26 +1,36 @@
 "use strict"
 const prompt = require("prompt-sync")();
-const scripts = require("./game");
 
 class User {
     constructor(numberOfGamesToPlay,record,choice){
-        this.numberOfGamesToPlay = numberOfGamesToPlay;
-        this.record = record;
-        this.choice = choice;
+        this.numberOfGamesToPlay = numberOfGamesToPlay;// 3 or 5
+        this.record = record; //[wins]
+        this.choice = choice; // 0 for Rock, 1 for Paper, 2 for Scissors, 3 for Lizard, 4 for Spock
+        this.numberOfGamesPlayed = numberOfGamesPlayed;
+
     }
+    // Getters and Setters
     getWinLossRecord() {
         return this.record;
     }
-    setWinLossRecord(record){
-        record += parseInt(input);
+    setWinLossRecord(input){
+        record += Number(input);
     }
     getNumberOfGamesToPlay(){
         return this.numberOfGamesToPlay;
     }
     setNumberOfGamesToPlay(input){
-        numberOfGamesToPlay = parseInt(input);
+        numberOfGamesToPlay = Number(input);
     }
-    chooseRPSLS(game){
+    setNumberOfGamesPlayed(input){
+        return this.numberOfGamesPlayed += Number(input);
+    }
+    getNumberOfGamesPlayed(){
+        return this.numberOfGamesPlayed;
+    }
+
+    //Choose Rock,Paper,Scissors,Lizard or Spock for Human Players
+    chooseRPSLS(game){ 
         console.log(`Choose one of the following by entering the number of the choice: `);
         for(let i = 0; i < game.gestures.length; i++){
             console.log(`<${i}> ${game.gestures[i]}`);
@@ -28,7 +38,8 @@ class User {
         let choice = Number(prompt(" "));
         console.log(`You chose ${game.gestures[choice]}`)
         return choice;
-    }   
+    }
+
 }
 
 class Player extends User{
@@ -38,11 +49,11 @@ class Player extends User{
     }
 }
 
-class AI extends User{
+class AI extends User{ 
     constructor(numberOfGamesToPlay,record,choice){
         super(numberOfGamesToPlay,record,choice);//Nick - added choice here, need to test
     }
-    chooseRPSLS(game){
+    chooseRPSLS(game){// override method of User for computer player
         let choice = game.gestures[Math.floor(Math.random() * game.gestures.length)];
         console.log(`Computer chose ${game.gestures[1]}`)
         return choice;
