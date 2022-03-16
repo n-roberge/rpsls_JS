@@ -12,9 +12,9 @@ class Game {
         this.welcomeMessage();
         let numberPlayers = this.selectPlayers();
         let numberOfGames = this.selectGames();
-        let playerChoice = numberPlayers[0].chooseRPSLS(game, gestures);
-        let aiChoice = numberPlayers[1].chooseRPSLS(game, gestures);
-        let winner = this.roundWinner(playerChoice,aiChoice, numberPlayers);
+        let playerChoice = this.playerChoose(numberPlayers,game,gestures,numberOfGames);
+
+        let winner = this.roundWinner(playerChoice, numberPlayers,game,);
 
         return winner;
     }
@@ -59,7 +59,7 @@ class Game {
                 requiredWins = 3;
                 break;
         }
-        return requiredWins;
+        return numberOfGames;
     };
     
     roundWinner(userChoice, computerChoice, players){ //TODO need to consider another opponent instead of just AI, also....three players?
@@ -147,6 +147,46 @@ class Game {
         }
         while (userWins !== requiredWins || aiWins !== requiredWins);
     };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    playerChoose(numberPlayers,game,gestures,numberOfGames){
+        for(let i = 0; i < 2; i++){
+            numberPlayers[i].setNumberOfGamesToPlay(numberOfGames);
+        }
+        let player2Choice;
+        let player1Choice = numberPlayers[0].chooseRPSLS(game, gestures);
+        if(numberPlayers.filter(arr => arr instanceof classes.AI).length){
+            player2Choice = numberPlayers[1].chooseRPSLS(game, gestures);
+
+        } else {
+            player2Choice = numberPlayers[1].chooseRPSLS(game, gestures);
+        }
+        return [player1Choice,player2Choice,game,gestures]
+        
+    }
 }
 
 //test
@@ -156,3 +196,5 @@ console.log(test)
 
 //exports
 module.exports.game = Game
+
+
