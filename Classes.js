@@ -32,12 +32,12 @@ class User {
 
     //Choose Rock,Paper,Scissors,Lizard or Spock for Human Players
     chooseRPSLS(game, gestures){ 
-        console.log(`Choose one of the following by entering the number of the choice: `);
+        console.log(`\nChoose one of the following by entering the number of the choice: `);
         for(let i = 0; i < gestures.length; i++){
             console.log(`<${i}> ${gestures[i]}`);
         }
         let choice = Number(prompt(" "));
-        console.log(`You chose ${gestures[choice]}`)
+        console.log(`\nYou chose ${gestures[choice]}\n`)
 
         choice = gestures[choice]//Nick added
 
