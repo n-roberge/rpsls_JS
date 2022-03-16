@@ -38,6 +38,9 @@ class User {
         }
         let choice = Number(prompt(" "));
         console.log(`You chose ${gestures[choice]}`)
+
+        choice = gestures[choice]//Nick added
+
         return choice;
     }
 

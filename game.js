@@ -61,33 +61,6 @@ class Game {
         }
         return requiredWins;
     };
-
-    //if there is an AI, randomly selects a gesture
-    //TODO this conflicts with the class prompt
-    aiChoice(){
-        let players = this.selectPlayers();
-        let computerChoice = Math.random()
-        computerChoice = Math.floor((computerChoice * 5) + 1);
-
-        if (computerChoice == 1){
-            computerChoice = "Rock"
-        }
-        else if(computerChoice == 2){
-            computerChoice = "Paper";
-        }
-        else if(computerChoice == 3){
-            computerChoice = "Scissor";
-        }
-        else if(computerChoice == 4){
-            computerChoice = "Lizard";
-        }
-        else{
-            computerChoice = "Spock";
-        } 
-
-        players[1]["choice"] = computerChoice
-        return computerChoice; //TODO not sure if this should return just the choice
-    };
     
     roundWinner(userChoice, computerChoice, players){ //TODO need to consider another opponent instead of just AI, also....three players?
         let opponentChoice;
@@ -112,7 +85,7 @@ class Game {
             }
         }
         else if(computerChoice == "Paper"){
-            if(userChoice == "Scissor" || userChoice == "Lizard"){
+            if(userChoice == "Scissors" || userChoice == "Lizard"){
                 result = userWins;
             }
             else if(userChoice == "Paper"){
@@ -122,11 +95,11 @@ class Game {
                 result = aiWins;
             }
         }
-        else if(computerChoice == "Scissor"){
+        else if(computerChoice == "Scissors"){
             if(userChoice == "Spock" || userChoice == "Rock"){
                 result = userWins;
             }
-            else if(userChoice == "Scissor"){
+            else if(userChoice == "Scissors"){
                 result = draw;
             }
             else{
@@ -134,7 +107,7 @@ class Game {
             }
         }   
         else if(computerChoice == "Lizard"){
-            if(userChoice == "Rock" || userChoice == "Scissor"){
+            if(userChoice == "Rock" || userChoice == "Scissors"){
                 result = userWins;
             }
             else if(userChoice == "Lizard"){
