@@ -20,12 +20,12 @@ class User {
     setNumberOfGamesToPlay(input){
         numberOfGamesToPlay = parseInt(input);
     }
-    chooseRPSLS(){
+    chooseRPSLS(game){
         console.log(`Choose one of the following by entering the number of the choice: `);
-        for(let i = 0; i < scripts.game.gestures.length; i++){
-            console.log(`<${i}> ${scripts.game.gestures[i]}`);
+        for(let i = 0; i < game.gestures.length; i++){
+            console.log(`<${i}> ${game.gestures[i]}`);
         }
-        choice = prompt(" ");
+        let choice = prompt(" ");
         return choice;
     }   
 }

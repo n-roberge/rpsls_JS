@@ -8,5 +8,8 @@ const scripts = require('./game');
 let game = new scripts.game();
 game.welcomeMessage()
 let numberPlayers = game.selectPlayers();
-let numberOfGames = game.selectGames;
+let numberOfGames = game.selectGames();
+let playerChoice = numberPlayers[0].chooseRPSLS(game);
+console.log(playerChoice);
+
 
