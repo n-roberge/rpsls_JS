@@ -2,11 +2,11 @@
 const prompt = require("prompt-sync")();
 
 class User {
-    constructor(numberOfGamesToPlay,record,choice){
-        this.numberOfGamesToPlay = numberOfGamesToPlay ?? 3;// 3 or 5 defaults to 3 if undefined
-        this.record = record ?? 0; //[wins] if undefined, defaults to 0
+    constructor({numberOfGamesToPlay,record=0,choice, numberOfGamesPlayed=0}){
+        this.numberOfGamesToPlay = numberOfGamesToPlay;// 3 or 5 defaults to 3 if undefined
+        this.record = record; //[wins] if undefined, defaults to 0
         this.choice = choice; // 0 for Rock, 1 for Paper, 2 for Scissors, 3 for Lizard, 4 for Spock
-        this.numberOfGamesPlayed = numberOfGamesPlayed ?? 0; // if undefined, defaults to 0
+        this.numberOfGamesPlayed = numberOfGamesPlayed; // if undefined, defaults to 0
 
     }
     // Getters and Setters
