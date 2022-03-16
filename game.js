@@ -15,15 +15,15 @@ class Game {
         this.welcomeMessage();
         let numberPlayers = this.selectPlayers();
         let numberOfGames = this.selectGames();
-        let playerChoice = numberPlayers[0].chooseRPSLS(game, gestures);
+        let playerChoice = this.playerChoose(numberPlayers,game, gestures,numberOfGames);
 
-        if (!(numberPlayers[1] instanceof classes.AI)){
-            console.log("Player 2 selection:")
-            playerChoice2 = numberPlayers[1].chooseRPSLS(game,gestures);
-        }
-        else{
-            aiChoice = numberPlayers[1].chooseRPSLS(game, gestures);
-        }
+        
+            
+            
+        
+  
+ 
+        
 
         let winner = this.roundWinner(playerChoice,playerChoice2,aiChoice, numberPlayers);
 
@@ -158,6 +158,36 @@ class Game {
     //     }
     //     while (userWins !== requiredWins || aiWins !== requiredWins);
     // };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    playerChoose(numberPlayers,game, gestures,numberOfGames){
+        let player1Choice = numberPlayers[0].chooseRPSLS(game, gestures);
+        let player2Choice;
+        if (!(numberPlayers[1] instanceof classes.AI)){
+            console.log("Player 2 selection:")
+            playerChoice2 = numberPlayers[1].chooseRPSLS(game,gestures);
+        }
+        else{
+            aiChoice = numberPlayers[1].chooseRPSLS(game, gestures);
+        }
+
+    }
 }
 
 //test
