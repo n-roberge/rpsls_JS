@@ -8,13 +8,23 @@ const prompt = require("prompt-sync")();
 class Game {
     runGame(game){
         let gestures = classes.gestures
+        let playerChoice2;
+        let aiChoice;
 
         this.welcomeMessage();
         let numberPlayers = this.selectPlayers();
         let numberOfGames = this.selectGames();
         let playerChoice = numberPlayers[0].chooseRPSLS(game, gestures);
-        let aiChoice = numberPlayers[1].chooseRPSLS(game, gestures);
-        let winner = this.roundWinner(playerChoice,aiChoice, numberPlayers);
+
+        if (!(numberPlayers[1] instanceof classes.AI)){
+            console.log("Player 2 selection:")
+            playerChoice2 = numberPlayers[1].chooseRPSLS(game,gestures);
+        }
+        else{
+            aiChoice = numberPlayers[1].chooseRPSLS(game, gestures);
+        }
+
+        let winner = this.roundWinner(playerChoice,playerChoice2,aiChoice, numberPlayers);
 
         return winner;
     }
@@ -29,7 +39,7 @@ class Game {
 
     selectPlayers(){
         let players = [];
-        let numberOfPlayers = prompt("How many players?:");
+        let numberOfPlayers = prompt("How many players?: ");
 
         if (Number(numberOfPlayers) === 1){
             players[0] = new classes.Player("","",0)
@@ -47,33 +57,22 @@ class Game {
 
     //returns number of requried wins based on amount of games
     selectGames(){
-        let requiredWins;
         //TODO validation
         let numberOfGames = prompt("How many games (3 or 5)?");
-
-        switch (numberOfGames){
-            case "3":
-                requiredWins = 2;
-                break;
-            case "5":
-                requiredWins = 3;
-                break;
-        }
-        return requiredWins;
+        return numberOfGames;
     };
     
-    roundWinner(userChoice, computerChoice, players){ //TODO need to consider another opponent instead of just AI, also....three players?
-        let opponentChoice;
+    roundWinner(userChoice, opponentChoice, computerChoice, players){ //TODO need to consider another opponent instead of just AI, also....three players?
         let draw = "Draw"
-        let userWins = "User wins"
+        let userWins;
         let aiWins = "Computer wins"
         let result;
 
-        if (players.length === 1){
-            computerChoice = opponentChoice;
+        if (players[1] instanceof classes.AI){
+            opponentChoice = computerChoice;
         }
 
-        if(computerChoice == "Rock"){
+        if(opponentChoice == "Rock"){
             if(userChoice == "Paper" || userChoice == "Spock"){
             result = userWins;
             }
@@ -84,7 +83,7 @@ class Game {
             result = aiWins;
             }
         }
-        else if(computerChoice == "Paper"){
+        else if(opponentChoice == "Paper"){
             if(userChoice == "Scissors" || userChoice == "Lizard"){
                 result = userWins;
             }
@@ -95,7 +94,7 @@ class Game {
                 result = aiWins;
             }
         }
-        else if(computerChoice == "Scissors"){
+        else if(opponentChoice == "Scissors"){
             if(userChoice == "Spock" || userChoice == "Rock"){
                 result = userWins;
             }
@@ -106,7 +105,7 @@ class Game {
                 result = aiWins;
             }
         }   
-        else if(computerChoice == "Lizard"){
+        else if(opponentChoice == "Lizard"){
             if(userChoice == "Rock" || userChoice == "Scissors"){
                 result = userWins;
             }
@@ -117,7 +116,7 @@ class Game {
                 result = aiWins;
             }   
         }
-        else if(computerChoice == "Spock"){
+        else if(opponentChoice == "Spock"){
             if(userChoice == "Lizard" || userChoice == "Paper"){
                 result = userWins;
             }
@@ -128,25 +127,36 @@ class Game {
                 result = aiWins;
             }
         }
+
+        if (players[1] instanceof classes.Player){
+            if (result = userWins){
+                result = "Player 1 wins"
+            }
+
+            else if (result = aiWins){
+                result = "Player 2 wins"
+            }
+        }
         return result
+
     };
 
     //TODO working on this
-    gameWinner(roundResult, requiredWins){
-        let userWins = 0;
-        let aiWins = 0;
+    // gameWinner(roundResult, requiredWins){
+    //     let userWins = 0;
+    //     let aiWins = 0;
 
-        do{
-            if (roundResult == "User wins"){
-                userWins = userWins++;
-            }
+    //     do{
+    //         if (roundResult == "User wins"){
+    //             userWins = userWins++;
+    //         }
 
-            else if (roundResult == "Computer wins"){
-                aiWins = aiWins++;
-            };
-        }
-        while (userWins !== requiredWins || aiWins !== requiredWins);
-    };
+    //         else if (roundResult == "Computer wins"){
+    //             aiWins = aiWins++;
+    //         };
+    //     }
+    //     while (userWins !== requiredWins || aiWins !== requiredWins);
+    // };
 }
 
 //test
