@@ -16,15 +16,6 @@ class Game {
         let numberPlayers = this.selectPlayers();
         let numberOfGames = this.selectGames();
         let playerChoice = this.playerChoose(numberPlayers,game, gestures,numberOfGames);
-
-        
-            
-            
-        
-  
- 
-        
-
         let winner = this.roundWinner(playerChoice,playerChoice2,aiChoice, numberPlayers);
 
         return winner;
@@ -40,7 +31,7 @@ class Game {
 
     selectPlayers(){
         let players = [];
-        let numberOfPlayers = prompt("How many players?: ");
+        let numberOfPlayers = prompt("How many players? (1 or 2): ");
 
         if (Number(numberOfPlayers) === 1){
             players[0] = new classes.Player("","",0)
