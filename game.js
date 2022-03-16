@@ -89,8 +89,6 @@ class Game {
     };
     
     roundWinner(userChoice, computerChoice, players){ //TODO need to consider another opponent instead of just AI, also....three players?
-        let userChoice = userChoice
-        let computerChoice = computerChoice
         let opponentChoice;
         let draw = "Draw"
         let userWins = "User wins"
@@ -159,20 +157,21 @@ class Game {
         return result
     };
 
-    gameWinner(result, requiredWins){
-        let roundResult = result;
-        let requiredWins = requiredWins;
-        let userWins = 0
-        let aiWins = 0
+    //TODO working on this
+    gameWinner(roundResult, requiredWins){
+        let userWins = 0;
+        let aiWins = 0;
 
-        while (userWins !== requiredWins || aiWins !== requiredWins){
+        do{
             if (roundResult == "User wins"){
-                userWins = userWins + 1;
+                userWins = userWins++;
             }
+
             else if (roundResult == "Computer wins"){
-                aiWins = aiWins + 1;
+                aiWins = aiWins++;
             };
         }
+        while (userWins !== requiredWins || aiWins !== requiredWins);
     };
 }
 
