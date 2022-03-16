@@ -8,6 +8,16 @@ class Game {
 
     gestures = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
 
+    runGame(game){
+        let numberPlayers = this.selectPlayers();
+        let numberOfGames = this.selectGames();
+        let playerChoice = numberPlayers[0].chooseRPSLS(game);
+        let aiChoice = numberPlayers[1].chooseRPSLS(game);
+        let winner = this.roundWinner(playerChoice,aiChoice);
+
+        
+    }
+
     //Welcome, select number of games
     welcomeMessage(){
         console.log("Welcome to Rock Paper Scissors Lizard Spock\n\nEach match will be best of three or five games.\nUse the number keys to enter your selection")
@@ -167,9 +177,9 @@ class Game {
 }
 
 //test
-let newGame = new Game()
-let test = newGame.aiChoice()
-console.log(test)
+// let newGame = new Game()
+// let test = newGame.aiChoice()
+// console.log(test)
 
 //exports
 module.exports.game = Game
