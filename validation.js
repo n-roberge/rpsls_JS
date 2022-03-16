@@ -1,4 +1,5 @@
 "use strict";
+const prompt = require("prompt-sync")();
 
 function promptFor(input, valid){
     let isValid;

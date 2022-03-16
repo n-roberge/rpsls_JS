@@ -2,8 +2,12 @@
 
 //imports
 const classes = require("./Classes");
-const prompt = require("prompt-sync")();
+const validation = require("./validation");
 
+//validation
+let promptFor = validation.promptFor;
+let playersValid = validation.playersValid;
+let gamesValid = validation.gamesValid;
 
 class Game {
     //add constructor
@@ -31,7 +35,7 @@ class Game {
 
     selectPlayers(){
         let players = [];
-        let numberOfPlayers = prompt("How many players? (1 or 2): ");
+        let numberOfPlayers = promptFor("How many players? (1 or 2): ",playersValid);
 
         if (Number(numberOfPlayers) === 1){
             players[0] = new classes.Player("","",0)
@@ -50,7 +54,7 @@ class Game {
     //returns number of requried wins based on amount of games
     selectGames(){
         //TODO validation
-        let numberOfGames = prompt("How many games (3 or 5)?");
+        let numberOfGames = promptFor("How many games (3 or 5)?",gamesValid);
         return numberOfGames;
     };
     
@@ -119,17 +123,14 @@ class Game {
                 result = aiWins;
             }
         }
-
         if (players[1] instanceof classes.Player){
             if (result = userWins){
                 result = "Player 1 wins"
             }
-
             else if (result = aiWins){
                 result = "Player 2 wins"
             }
         }
-
         return result;
     };
 
@@ -149,23 +150,6 @@ class Game {
     //     }
     //     while (userWins !== requiredWins || aiWins !== requiredWins);
     // };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     playerChoose(numberPlayers,game, gestures,numberOfGames){
         for(let i = 0; i < 2; i++){

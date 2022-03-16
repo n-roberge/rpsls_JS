@@ -1,7 +1,12 @@
 "use strict"
 const prompt = require("prompt-sync")();
+const validation = require("./validation");
+
 let gestures = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
 
+//validation
+let promptFor = validation.promptFor;
+let gesturesValid = validation.gesturesValid;
 class User {
     constructor({numberOfGamesToPlay,record=0,choice, numberOfGamesPlayed=0,gestures}){
         this.numberOfGamesToPlay = numberOfGamesToPlay;// 3 or 5 defaults to 3 if undefined
@@ -19,7 +24,7 @@ class User {
         for(let i = 0; i < gestures.length; i++){
             console.log(`<${i}> ${gestures[i]}`);
         }
-        let choice = Number(prompt(" "));
+        let choice = Number(promptFor((" "),gesturesValid));
         console.log(`\nYou chose ${gestures[choice]}\n`)
 
         choice = gestures[choice]//Nick added
