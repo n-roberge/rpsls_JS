@@ -10,6 +10,6 @@ game.welcomeMessage()
 let numberPlayers = game.selectPlayers();
 let numberOfGames = game.selectGames();
 let playerChoice = numberPlayers[0].chooseRPSLS(game);
-console.log(playerChoice);
+let aiChoice = numberPlayers[1].chooseRPSLS(game);
 
 

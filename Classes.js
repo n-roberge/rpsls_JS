@@ -25,7 +25,8 @@ class User {
         for(let i = 0; i < game.gestures.length; i++){
             console.log(`<${i}> ${game.gestures[i]}`);
         }
-        let choice = prompt(" ");
+        let choice = Number(prompt(" "));
+        console.log(`You chose ${game.gestures[choice]}`)
         return choice;
     }   
 }
@@ -41,8 +42,9 @@ class AI extends User{
     constructor(numberOfGamesToPlay,record,choice){
         super(numberOfGamesToPlay,record,choice);//Nick - added choice here, need to test
     }
-    chooseRPSLS(){
-        let choice = scripts.game.gestures[math.floor(math.random() * scripts.game.gestures.length)];
+    chooseRPSLS(game){
+        let choice = game.gestures[Math.floor(Math.random() * game.gestures.length)];
+        console.log(`Computer chose ${game.gestures[1]}`)
         return choice;
     }
 }
