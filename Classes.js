@@ -8,27 +8,10 @@ class User {
         this.record = record; //[wins] if undefined, defaults to 0
         this.choice = choice; // 0 for Rock, 1 for Paper, 2 for Scissors, 3 for Lizard, 4 for Spock
         this.numberOfGamesPlayed = numberOfGamesPlayed; // if undefined, defaults to 0
+        this.gestures = gestures;
 
     }
-    // Getters and Setters
-    getWinLossRecord() {
-        return this.record;
-    }
-    setWinLossRecord(input){
-        record += Number(input);
-    }
-    getNumberOfGamesToPlay(){
-        return this.numberOfGamesToPlay;
-    }
-    setNumberOfGamesToPlay(input){
-        numberOfGamesToPlay = Number(input);
-    }
-    setNumberOfGamesPlayed(input){
-        return this.numberOfGamesPlayed += Number(input);
-    }
-    getNumberOfGamesPlayed(){
-        return this.numberOfGamesPlayed;
-    }
+
 
     //Choose Rock,Paper,Scissors,Lizard or Spock for Human Players
     chooseRPSLS(game, gestures){ 
