@@ -1,8 +1,9 @@
 "use strict"
 const prompt = require("prompt-sync")();
+let gestures = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
 
 class User {
-    constructor({numberOfGamesToPlay,record=0,choice, numberOfGamesPlayed=0}){
+    constructor({numberOfGamesToPlay,record=0,choice, numberOfGamesPlayed=0,gestures}){
         this.numberOfGamesToPlay = numberOfGamesToPlay;// 3 or 5 defaults to 3 if undefined
         this.record = record; //[wins] if undefined, defaults to 0
         this.choice = choice; // 0 for Rock, 1 for Paper, 2 for Scissors, 3 for Lizard, 4 for Spock
@@ -30,13 +31,13 @@ class User {
     }
 
     //Choose Rock,Paper,Scissors,Lizard or Spock for Human Players
-    chooseRPSLS(game){ 
+    chooseRPSLS(game, gestures){ 
         console.log(`Choose one of the following by entering the number of the choice: `);
-        for(let i = 0; i < game.gestures.length; i++){
-            console.log(`<${i}> ${game.gestures[i]}`);
+        for(let i = 0; i < gestures.length; i++){
+            console.log(`<${i}> ${gestures[i]}`);
         }
         let choice = Number(prompt(" "));
-        console.log(`You chose ${game.gestures[choice]}`)
+        console.log(`You chose ${gestures[choice]}`)
         return choice;
     }
 
@@ -53,12 +54,13 @@ class AI extends User{
     constructor(numberOfGamesToPlay,record,choice){
         super(numberOfGamesToPlay,record,choice);//Nick - added choice here, need to test
     }
-    chooseRPSLS(game){// override method of User for computer player
+    chooseRPSLS(game, gestures){// override method of User for computer player
         let choice = game.gestures[Math.floor(Math.random() * game.gestures.length)];
         console.log(`Computer chose ${game.gestures[1]}`)
         return choice;
     }
 }
 
+module.exports.gestures = gestures;
 module.exports.Player = Player;
 module.exports.AI = AI;

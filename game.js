@@ -4,18 +4,18 @@
 const classes = require("./Classes");
 const prompt = require("prompt-sync")();
 
+
 class Game {
-
-    gestures = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
-
     runGame(game){
+        let gestures = classes.gestures
+        this.welcomeMessage();
         let numberPlayers = this.selectPlayers();
         let numberOfGames = this.selectGames();
-        let playerChoice = numberPlayers[0].chooseRPSLS(game);
-        let aiChoice = numberPlayers[1].chooseRPSLS(game);
-        let winner = this.roundWinner(playerChoice,aiChoice);
+        let playerChoice = numberPlayers[0].chooseRPSLS(game, gestures);
+        let aiChoice = numberPlayers[1].chooseRPSLS(game, gestures);
+        let winner = this.roundWinner(playerChoice,aiChoice, numberPlayers);
 
-        
+        return winner;
     }
 
     //Welcome, select number of games
@@ -23,7 +23,7 @@ class Game {
         console.log("Welcome to Rock Paper Scissors Lizard Spock\n\nEach match will be best of three or five games.\nUse the number keys to enter your selection")
 
         //Rules, select gesture
-        console.log("\n\nScissors cuts Paper\nPaper covers Rock\nLizard poisons Spock\nSpock smashes Scissors\nScissors decapitates lizard\nLizard eats paper\nPaper disaproves Spock\nSpock vaporizes Rock\nRock crushes Scissors")
+        console.log("\nScissors cuts Paper\nPaper covers Rock\nLizard poisons Spock\nSpock smashes Scissors\nScissors decapitates lizard\nLizard eats paper\nPaper disaproves Spock\nSpock vaporizes Rock\nRock crushes Scissors\n")
     };
 
     selectPlayers(){
@@ -176,9 +176,9 @@ class Game {
 }
 
 //test
-// let newGame = new Game()
-// let test = newGame.aiChoice()
-// console.log(test)
+let newGame = new Game()
+let test = newGame.runGame()
+console.log(test)
 
 //exports
 module.exports.game = Game
