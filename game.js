@@ -6,6 +6,7 @@ const prompt = require("prompt-sync")();
 
 
 class Game {
+    //add constructor
     runGame(game){
         let gestures = classes.gestures
         let playerChoice2;
@@ -64,7 +65,7 @@ class Game {
     
     roundWinner(userChoice, opponentChoice, computerChoice, players){ //TODO need to consider another opponent instead of just AI, also....three players?
         let draw = "Draw"
-        let userWins;
+        let userWins = "User wins"
         let aiWins = "Computer wins"
         let result;
 
@@ -137,8 +138,8 @@ class Game {
                 result = "Player 2 wins"
             }
         }
-        return result
 
+        return result;
     };
 
     //TODO working on this
