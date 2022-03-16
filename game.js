@@ -177,8 +177,12 @@ class Game {
 
 
     playerChoose(numberPlayers,game, gestures,numberOfGames){
-        let player1Choice = numberPlayers[0].chooseRPSLS(game, gestures);
-        let player2Choice;
+        for(let i = 0; i < 2; i++){
+            numberPlayers[i].numberOfGamesToPlay = Number(numberOfGames);
+        }
+        let playerChoice = numberPlayers[0].chooseRPSLS(game, gestures);
+        let playerChoice2;
+        let aiChoice;
         if (!(numberPlayers[1] instanceof classes.AI)){
             console.log("Player 2 selection:")
             playerChoice2 = numberPlayers[1].chooseRPSLS(game,gestures);
@@ -186,6 +190,7 @@ class Game {
         else{
             aiChoice = numberPlayers[1].chooseRPSLS(game, gestures);
         }
+        return playerChoice,playerChoice2,aiChoice;
 
     }
 }
