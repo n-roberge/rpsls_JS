@@ -8,6 +8,7 @@ const prompt = require("prompt-sync")();
 class Game {
     runGame(game){
         let gestures = classes.gestures
+        
         this.welcomeMessage();
         let numberPlayers = this.selectPlayers();
         let numberOfGames = this.selectGames();
