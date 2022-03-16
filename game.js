@@ -8,7 +8,7 @@ const prompt = require("prompt-sync")();
 class Game {
     runGame(game){
         let gestures = classes.gestures
-        
+
         this.welcomeMessage();
         let numberPlayers = this.selectPlayers();
         let numberOfGames = this.selectGames();
@@ -101,10 +101,10 @@ class Game {
         }
 
         if(computerChoice == "Rock"){
-            if(userChoice == "paper" || userChoice == "spock"){
+            if(userChoice == "Paper" || userChoice == "Spock"){
             result = userWins;
             }
-            else if(userChoice == "rock"){
+            else if(userChoice == "Rock"){
             result = draw;
             }
             else{
@@ -112,10 +112,10 @@ class Game {
             }
         }
         else if(computerChoice == "Paper"){
-            if(userChoice == "scissor" || userChoice == "lizard"){
+            if(userChoice == "Scissor" || userChoice == "Lizard"){
                 result = userWins;
             }
-            else if(userChoice == "paper"){
+            else if(userChoice == "Paper"){
                 result = draw;
             }
             else{
@@ -123,10 +123,10 @@ class Game {
             }
         }
         else if(computerChoice == "Scissor"){
-            if(userChoice == "spock" || userChoice == "rock"){
+            if(userChoice == "Spock" || userChoice == "Rock"){
                 result = userWins;
             }
-            else if(userChoice == "scissor"){
+            else if(userChoice == "Scissor"){
                 result = draw;
             }
             else{
@@ -134,10 +134,10 @@ class Game {
             }
         }   
         else if(computerChoice == "Lizard"){
-            if(userChoice == "rock" || userChoice == "scissor"){
+            if(userChoice == "Rock" || userChoice == "Scissor"){
                 result = userWins;
             }
-            else if(userChoice == "lizard"){
+            else if(userChoice == "Lizard"){
                 result = draw;
             }
             else{
@@ -145,10 +145,10 @@ class Game {
             }   
         }
         else if(computerChoice == "Spock"){
-            if(userChoice == "lizard" || userChoice == "paper"){
+            if(userChoice == "Lizard" || userChoice == "Paper"){
                 result = userWins;
             }
-            else if(userChoice == "spock"){
+            else if(userChoice == "Spock"){
                 result = draw;
             }
             else{

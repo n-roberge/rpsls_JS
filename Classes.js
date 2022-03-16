@@ -56,7 +56,7 @@ class AI extends User{
     }
     chooseRPSLS(game, gestures){// override method of User for computer player
         let choice = gestures[Math.floor(Math.random() * gestures.length)];
-        console.log(`Computer chose ${gestures[1]}`)
+        console.log(`Computer chose ${choice}`)
         return choice;
     }
 }
