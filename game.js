@@ -15,7 +15,7 @@ class Game {
         //Rules, select gesture
         console.log("\n\nScissors cuts Paper\nPaper covers Rock\nLizard poisons Spock\nSpock smashes Scissors\nScissors decapitates lizard\nLizard eats paper\nPaper disaproves Spock\nSpock vaporizes Rock\nRock crushes Scissors")
     };
-    
+
     selectPlayers(){
         let players = [];
         let numberOfPlayers = prompt("How many players?:");
@@ -52,6 +52,7 @@ class Game {
     };
 
     //if there is an AI, randomly selects a gesture
+    //TODO this conflicts with the class prompt
     aiChoice(){
         let players = this.selectPlayers();
         let computerChoice = Math.random()
@@ -74,20 +75,21 @@ class Game {
         } 
 
         players[1]["choice"] = computerChoice
-        return players; //TODO not sure if this hsould return just the choice
+        return computerChoice; //TODO not sure if this should return just the choice
     };
-
-    // userChoice(){
-    //     //access chooseRPSLS
-    // };
     
-    roundWinner(){
-        //let userChoice = some method
-        let computerChoice = this.aiChoice()
+    roundWinner(userChoice, computerChoice, players){ //TODO need to consider another opponent instead of just AI, also....three players?
+        let userChoice = userChoice
+        let computerChoice = computerChoice
+        let opponentChoice;
         let draw = "Draw"
         let userWins = "User wins"
         let aiWins = "Computer wins"
         let result;
+
+        if (players.length === 1){
+            computerChoice = opponentChoice;
+        }
 
         if(computerChoice == "Rock"){
             if(userChoice == "paper" || userChoice == "spock"){
@@ -145,6 +147,22 @@ class Game {
             }
         }
         return result
+    };
+
+    gameWinner(result, requiredWins){
+        let roundResult = result;
+        let requiredWins = requiredWins;
+        let userWins = 0
+        let aiWins = 0
+
+        while (userWins !== requiredWins || aiWins !== requiredWins){
+            if (roundResult == "User wins"){
+                userWins = userWins + 1;
+            }
+            else if (roundResult == "Computer wins"){
+                aiWins = aiWins + 1;
+            };
+        }
     };
 }
 
