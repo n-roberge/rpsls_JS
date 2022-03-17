@@ -21,6 +21,7 @@ class Game {
         this.welcomeMessage();
         let numberPlayers = this.selectPlayers();
         let numberOfGames = this.selectGames();
+        console.clear();
         let winner = this.gameNextStep(numberPlayers,game,gestures,numberOfGames);
         return winner;
     }
@@ -30,7 +31,7 @@ class Game {
         switch(numberPlayers[0].numberOfGamesToPlay){ 
             case 3:
                 if(numberPlayers[0].record < 2 && numberPlayers[1].record < 2){
-                    console.log(`\nThis rounds result is: ${winner}\n`);
+                    console.log(`\nThe result of this round is: ${winner}\n`);
                     this.gameNextStep(numberPlayers,game,gestures); 
                 }
                 break;
@@ -47,6 +48,7 @@ class Game {
 
     //Welcome, select number of games
     welcomeMessage(){
+        console.clear();
         console.log("Welcome to Rock Paper Scissors Lizard Spock\n\nEach match will be best of three or five games.\nUse the number keys to enter your selection")
 
         //Rules, select gesture
@@ -58,14 +60,14 @@ class Game {
         let numberOfPlayers = promptFor("How many players? (1 or 2): ",playersValid);
 
         if (Number(numberOfPlayers) === 1){
-            players[0] = new classes.Player("","",0)
+            players[0] = new classes.Player("","",0,1)
             //create AI player
             players[1] = new classes.AI("","")
         }
 
         else {
             for (let i = 0; i < Number(numberOfPlayers); i++){
-                players[i] = new classes.Player("","","",i)     
+                players[i] = new classes.Player("","","",i+1)     
             }
         }
         return players;
@@ -186,11 +188,11 @@ class Game {
             }
             numberPlayers[i].numberOfGamesPlayed++;
         }
-        let playerChoice = numberPlayers[0].chooseRPSLS(game, gestures);
+        let playerChoice = numberPlayers[0].chooseRPSLS(game, gestures,numberPlayers[0]);
         numberPlayers[0].choice = playerChoice;
         if (!(numberPlayers[1] instanceof classes.AI)){
             console.log("Player 2 selection:")
-            let playerChoice2 = numberPlayers[1].chooseRPSLS(game,gestures);
+            let playerChoice2 = numberPlayers[1].chooseRPSLS(game,gestures,numberPlayers[1]);
             numberPlayers[1].choice = playerChoice2;
         }
         else{
