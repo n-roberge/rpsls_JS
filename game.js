@@ -155,9 +155,9 @@ class Game {
         } else if (result == opponentWins){
                 result = user2Wins;
         }
-        if(result != draw && user1Wins){
+        if(result == user1Wins){
             players[0].record++;
-        } else if (result != draw && (aiWins || user2Wins)){
+        } else if (result == aiWins || result == user2Wins){
             players[1].record++;
         }
  
