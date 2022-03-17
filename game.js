@@ -32,13 +32,13 @@ class Game {
             case 3:
                 if(numberPlayers[0].record < 2 && numberPlayers[1].record < 2){
                     console.log(`\nThe result of this round is: ${winner}\n`);
-                    this.gameNextStep(numberPlayers,game,gestures); 
+                    winner = this.gameNextStep(numberPlayers,game,gestures); 
                 }
                 break;
             case 5:
                 if(numberPlayers[0].record < 3 && numberPlayers[1].record < 3){
                     console.log(`\nThis rounds result is: ${winner}\n`);
-                    this.gameNextStep(numberPlayers,game,gestures); 
+                    winner = this.gameNextStep(numberPlayers,game,gestures); 
                 }
                 break;  
         };
@@ -150,11 +150,13 @@ class Game {
                 result = opponentWins;
             }
         }
+
         if (players[1] instanceof classes.AI && result == opponentWins){
             result = aiWins
         } else if (result == opponentWins){
                 result = user2Wins;
         }
+
         if(result == user1Wins){
             players[0].record++;
         } else if (result == aiWins || result == user2Wins){
