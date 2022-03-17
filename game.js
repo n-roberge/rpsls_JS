@@ -14,9 +14,6 @@ class Game {
     //add constructor
     runGame(game){
         let gestures = classes.gestures
-        var playerChoice2;
-        var aiChoice;
-        var playerChoice;
 
         this.welcomeMessage();
         let numberPlayers = this.selectPlayers();
@@ -26,7 +23,7 @@ class Game {
         return winner;
     }
     gameNextStep(numberPlayers,game,gestures,numberOfGames){
-        let playersChoice = this.playerChoose(numberPlayers,game, gestures,numberOfGames);
+        let playersChoice = this.playerChoose(numberPlayers,gestures,numberOfGames);
         let winner = this.roundWinner(playersChoice, numberPlayers,numberOfGames);
         switch(numberPlayers[0].numberOfGamesToPlay){ 
             case 3:
@@ -80,7 +77,7 @@ class Game {
     };
     
     //returns winner of each round
-    roundWinner(playersChoice, players){ 
+    roundWinner(players){ 
         let draw = "Draw";
         let user1Wins = "Player 1 wins";
         let user2Wins = "Player 2 wins";
@@ -164,22 +161,22 @@ class Game {
     };
 
     //user selects gestures
-    playerChoose(numberPlayers,game, gestures,numberOfGames){
+    playerChoose(numberPlayers,gestures,numberOfGames){
         for(let i = 0; i < 2; i++){
             if(numberOfGames){
                 numberPlayers[i].numberOfGamesToPlay = Number(numberOfGames);
             }
             numberPlayers[i].numberOfGamesPlayed++;
         }
-        let playerChoice = numberPlayers[0].chooseRPSLS(game, gestures,numberPlayers[0]);
+        let playerChoice = numberPlayers[0].chooseRPSLS(gestures,numberPlayers[0]);
         numberPlayers[0].choice = playerChoice;
         if (!(numberPlayers[1] instanceof classes.AI)){
             console.log("Player 2 selection:")
-            let playerChoice2 = numberPlayers[1].chooseRPSLS(game,gestures,numberPlayers[1]);
+            let playerChoice2 = numberPlayers[1].chooseRPSLS(gestures,numberPlayers[1]);
             numberPlayers[1].choice = playerChoice2;
         }
         else{
-            let aiChoice = numberPlayers[1].chooseRPSLS(game, gestures);
+            let aiChoice = numberPlayers[1].chooseRPSLS(gestures);
             numberPlayers[1].choice = aiChoice;
         }
         return numberPlayers;
