@@ -4,6 +4,7 @@
 const classes = require("./Classes");
 const validation = require("./validation");
 
+
 //validation
 let promptFor = validation.promptFor;
 let playersValid = validation.playersValid;
@@ -13,14 +14,15 @@ class Game {
     //add constructor
     runGame(game){
         let gestures = classes.gestures
-        let playerChoice2;
-        let aiChoice;
+        var playerChoice2;
+        var aiChoice;
+        var playerChoice;
 
         this.welcomeMessage();
         let numberPlayers = this.selectPlayers();
         let numberOfGames = this.selectGames();
-        let playerChoice = this.playerChoose(numberPlayers,game, gestures,numberOfGames);
-        let winner = this.roundWinner(playerChoice,playerChoice2,aiChoice, numberPlayers);
+        let playersChoice = this.playerChoose(numberPlayers,game, gestures,numberOfGames,playerChoice,playerChoice2,aiChoice);
+        let winner = this.roundWinner(playersChoice, numberPlayers);
 
         return winner;
     }
@@ -58,11 +60,14 @@ class Game {
         return numberOfGames;
     };
     
-    roundWinner(userChoice, opponentChoice, computerChoice, players){ //TODO need to consider another opponent instead of just AI, also....three players?
+    roundWinner(playersChoice, players){ //TODO need to consider another opponent instead of just AI, also....three players?
         let draw = "Draw"
         let userWins = "User wins"
         let aiWins = "Computer wins"
         let result;
+        let userChoice = playersChoice[0];
+        let opponentChoice = playersChoice[1];
+        let computerChoice = playersChoice[2];
 
         if (players[1] instanceof classes.AI){
             opponentChoice = computerChoice;
@@ -131,6 +136,12 @@ class Game {
                 result = "Player 2 wins"
             }
         }
+        if(userWins){
+            players[0].record++;
+        } else if (aiWins){
+            players[1].record++;
+        }
+ 
         return result;
     };
 
@@ -151,13 +162,11 @@ class Game {
     //     while (userWins !== requiredWins || aiWins !== requiredWins);
     // };
 
-    playerChoose(numberPlayers,game, gestures,numberOfGames){
+    playerChoose(numberPlayers,game, gestures,numberOfGames,playerChoice,playerChoice2,aiChoice){
         for(let i = 0; i < 2; i++){
             numberPlayers[i].numberOfGamesToPlay = Number(numberOfGames);
         }
-        let playerChoice = numberPlayers[0].chooseRPSLS(game, gestures);
-        let playerChoice2;
-        let aiChoice;
+        playerChoice = numberPlayers[0].chooseRPSLS(game, gestures);
         if (!(numberPlayers[1] instanceof classes.AI)){
             console.log("Player 2 selection:")
             playerChoice2 = numberPlayers[1].chooseRPSLS(game,gestures);
@@ -165,15 +174,15 @@ class Game {
         else{
             aiChoice = numberPlayers[1].chooseRPSLS(game, gestures);
         }
-        return playerChoice,playerChoice2,aiChoice;
-
+        
+        return [playerChoice, playerChoice2,aiChoice];
     }
 }
 
 //test
-let newGame = new Game()
-let test = newGame.runGame()
-console.log(test)
+// let newGame = new Game()
+// let test = newGame.runGame()
+// console.log(test)
 
 //exports
 module.exports.game = Game
