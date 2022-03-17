@@ -1,5 +1,4 @@
 "use strict"
-const prompt = require("prompt-sync")();
 const validation = require("./validation");
 
 let gestures = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
@@ -19,7 +18,7 @@ class User {
 
 
     //Choose Rock,Paper,Scissors,Lizard or Spock for Human Players
-    chooseRPSLS(game, gestures,numberPlayers){ 
+    chooseRPSLS(gestures,numberPlayers){ 
         console.log(`\nChoose one of the following by entering the number of the choice: `);
         for(let i = 0; i < gestures.length; i++){
             console.log(`<${i}> ${gestures[i]}`);
@@ -43,7 +42,7 @@ class AI extends User{
     constructor(numberOfGamesToPlay,record,choice){
         super(numberOfGamesToPlay,record,choice);
     };
-    chooseRPSLS(game, gestures){// override method of User for computer player
+    chooseRPSLS(gestures){// override method of User for computer player
         let choice = gestures[Math.floor(Math.random() * gestures.length)];
         console.log(`Computer chose ${choice}`);
         return choice;
