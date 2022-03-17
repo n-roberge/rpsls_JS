@@ -8,9 +8,8 @@ const prompt = require("prompt-sync")();
 //test
 let game = new scripts.game();
 let newGame = game.runGame(game);
-console.log(newGame);
+console.log(`\n=================> ${newGame}!!!\n`);
 // console.log("Press <RETURN> to continue...");
 // prompt("");
-
 
 
