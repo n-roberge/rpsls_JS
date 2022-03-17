@@ -40,21 +40,21 @@ class Game {
                     console.log(`\nThis rounds result is: ${winner}\n`);
                     this.gameNextStep(numberPlayers,game,gestures); 
                 }
-                break;
-                
-        }
+                break;  
+        };
         return winner;
-    }
+    };
 
-    //Welcome, select number of games
+    //Welcome
     welcomeMessage(){
         console.clear();
         console.log("Welcome to Rock Paper Scissors Lizard Spock\n\nEach match will be best of three or five games.\nUse the number keys to enter your selection")
 
-        //Rules, select gesture
+        //Rules
         console.log("\nScissors cuts Paper\nPaper covers Rock\nLizard poisons Spock\nSpock smashes Scissors\nScissors decapitates lizard\nLizard eats paper\nPaper disaproves Spock\nSpock vaporizes Rock\nRock crushes Scissors\n")
     };
 
+    //selects number of players
     selectPlayers(){
         let players = [];
         let numberOfPlayers = promptFor("How many players? (1 or 2): ",playersValid);
@@ -73,18 +73,18 @@ class Game {
         return players;
     };
 
-    //returns number of requried wins based on amount of games
+    //returns number of games
     selectGames(){
-        //TODO validation
         let numberOfGames = promptFor("How many games (3 or 5)?",gamesValid);
         return numberOfGames;
     };
     
-    roundWinner(playersChoice, players){ //TODO need to consider another opponent instead of just AI, also....three players?
-        let draw = "Draw"
-        let user1Wins = "Player 1 wins"
-        let user2Wins = "Player 2 wins"
-        let aiWins = "Computer wins"
+    //returns winner of each round
+    roundWinner(playersChoice, players){ 
+        let draw = "Draw";
+        let user1Wins = "Player 1 wins";
+        let user2Wins = "Player 2 wins";
+        let aiWins = "Computer wins";
         let opponentWins = "";
         let result;
         let userChoice = players[0].choice;
@@ -160,27 +160,10 @@ class Game {
         } else if (result == aiWins || result == user2Wins){
             players[1].record++;
         }
- 
         return result;
     };
 
-    //TODO working on this
-    // gameWinner(roundResult, requiredWins){
-    //     let user1Wins = 0;
-    //     let aiWins = 0;
-
-    //     do{
-    //         if (roundResult == "User wins"){
-    //             user1Wins = user1Wins++;
-    //         }
-
-    //         else if (roundResult == "Computer wins"){
-    //             aiWins = aiWins++;
-    //         };
-    //     }
-    //     while (user1Wins !== requiredWins || aiWins !== requiredWins);
-    // };
-
+    //user selects gestures
     playerChoose(numberPlayers,game, gestures,numberOfGames){
         for(let i = 0; i < 2; i++){
             if(numberOfGames){
@@ -199,17 +182,11 @@ class Game {
             let aiChoice = numberPlayers[1].chooseRPSLS(game, gestures);
             numberPlayers[1].choice = aiChoice;
         }
-        
         return numberPlayers;
     }
 }
 
-//test
-// let newGame = new Game()
-// let test = newGame.runGame()
-// console.log(test)
-
 //exports
-module.exports.game = Game
+module.exports.game = Game;
 
 
