@@ -17,7 +17,7 @@ class Game {
 
         this.welcomeMessage();
         let numberPlayers = this.selectPlayers();
-        let numberOfGames = this.selectGames();
+        let numberOfGames = this.selectGames(numberPlayers);
         console.clear();
         let winner = this.gameNextStep(numberPlayers,game,gestures,numberOfGames);
         return winner;
@@ -25,17 +25,22 @@ class Game {
     gameNextStep(numberPlayers,game,gestures,numberOfGames){
         let playersChoice = this.playerChoose(numberPlayers,gestures,numberOfGames);
         let winner = this.roundWinner(playersChoice, numberPlayers,numberOfGames);
+
         switch(numberPlayers[0].numberOfGamesToPlay){ 
             case 3:
-                if(numberPlayers[0].record < 2 && numberPlayers[1].record < 2){
+                if(numberPlayers[0].record < 2 && numberPlayers[1].record < 2 && numberPlayers[0].numberOfGamesPlayed < 3){
                     console.log(`\nThe result of this round is: ${winner}\n`);
                     winner = this.gameNextStep(numberPlayers,game,gestures); 
+                } else if (numberPlayers[0].record < 2 && numberPlayers[1].record < 2 && numberPlayers[0].numberOfGamesPlayed == 3){
+                    winner = "Draw!";
                 }
                 break;
             case 5:
-                if(numberPlayers[0].record < 3 && numberPlayers[1].record < 3){
+                if(numberPlayers[0].record < 3 && numberPlayers[1].record < 3 && numberPlayers[0].numberOfGamesPlayed < 5){
                     console.log(`\nThis rounds result is: ${winner}\n`);
                     winner = this.gameNextStep(numberPlayers,game,gestures); 
+                } else if(numberPlayers[0].record < 3 && numberPlayers[1].record < 3 && numberPlayers[0].numberOfGamesPlayed == 5){
+                    winner = "Draw!";
                 }
                 break;  
         };
@@ -71,8 +76,11 @@ class Game {
     };
 
     //returns number of games
-    selectGames(){
+    selectGames(numberPlayers){
         let numberOfGames = promptFor("How many games (3 or 5)?",gamesValid);
+        for(let i = 0; i<2; i++){
+            numberPlayers[i].numberOfGamesToPlay = Number(numberOfGames);
+        }
         return numberOfGames;
     };
     
