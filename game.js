@@ -11,35 +11,37 @@ let playersValid = validation.playersValid;
 let gamesValid = validation.gamesValid;
 
 class Game {
-    //add constructor
+    constructor(){
+        this.playerOne;
+        this.playerTwo; 
+        this.gestures = classes.gestures;
+    }
     runGame(game){
-        let gestures = classes.gestures
-
         this.welcomeMessage();
-        let numberPlayers = this.selectPlayers();
-        let numberOfGames = this.selectGames(numberPlayers);
+        this.selectPlayers();
+        this.selectGames();
         console.clear();
-        let winner = this.gameNextStep(numberPlayers,game,gestures,numberOfGames);
+        let winner = this.gameNextStep(game);
         return winner;
     }
-    gameNextStep(numberPlayers,game,gestures,numberOfGames){
-        let playersChoice = this.playerChoose(numberPlayers,gestures,numberOfGames);
-        let winner = this.roundWinner(playersChoice, numberPlayers,numberOfGames);
+    gameNextStep(game){
+        this.playerChoose();
+        let winner = this.roundWinner();
 
-        switch(numberPlayers[0].numberOfGamesToPlay){ 
+        switch(this.playerOne.numberOfGamesToPlay){ 
             case 3:
-                if(numberPlayers[0].record < 2 && numberPlayers[1].record < 2 && numberPlayers[0].numberOfGamesPlayed < 3){
+                if(this.playerOne.record < 2 && this.playerTwo.record < 2){
                     console.log(`\nThe result of this round is: ${winner}\n`);
-                    winner = this.gameNextStep(numberPlayers,game,gestures); 
-                } else if (numberPlayers[0].record < 2 && numberPlayers[1].record < 2 && numberPlayers[0].numberOfGamesPlayed == 3){
+                    winner = this.gameNextStep(game); 
+                } else if (this.playerOne.record < 2 && this.playerTwo.record < 2){
                     winner = "Draw!";
                 }
                 break;
             case 5:
-                if(numberPlayers[0].record < 3 && numberPlayers[1].record < 3 && numberPlayers[0].numberOfGamesPlayed < 5){
+                if(this.playerOne.record < 3 && this.playerTwo.record < 3){
                     console.log(`\nThis rounds result is: ${winner}\n`);
-                    winner = this.gameNextStep(numberPlayers,game,gestures); 
-                } else if(numberPlayers[0].record < 3 && numberPlayers[1].record < 3 && numberPlayers[0].numberOfGamesPlayed == 5){
+                    winner = this.gameNextStep(game); 
+                } else if(this.playerOne.record < 3 && this.playerTwo.record < 3){
                     winner = "Draw!";
                 }
                 break;  
@@ -58,97 +60,86 @@ class Game {
 
     //selects number of players
     selectPlayers(){
-        let players = [];
         let numberOfPlayers = promptFor("How many players? (1 or 2): ",playersValid);
 
         if (Number(numberOfPlayers) === 1){
-            players[0] = new classes.Player("","",0,1)
+            this.playerOne = new classes.Player("","",0,1);
             //create AI player
-            players[1] = new classes.AI("","")
+            this.playerTwo = new classes.AI("","");
         }
 
         else {
-            for (let i = 0; i < Number(numberOfPlayers); i++){
-                players[i] = new classes.Player("","","",i+1)     
-            }
+            this.playerOne = new classes.Player("","",0,1);
+            this.playerTwo = new classes.Player("","",0,2);
         }
-        return players;
     };
 
     //returns number of games
-    selectGames(numberPlayers){
+    selectGames(){
         let numberOfGames = promptFor("How many games (3 or 5)?",gamesValid);
-        for(let i = 0; i<2; i++){
-            numberPlayers[i].numberOfGamesToPlay = Number(numberOfGames);
-        }
-        return numberOfGames;
+            this.playerOne.numberOfGamesToPlay = Number(numberOfGames);
+            this.playerTwo.numberOfGamesToPlay = Number(numberOfGames);
     };
     
     //returns winner of each round
-    roundWinner(players){ 
+    roundWinner(){ 
         let draw = "Draw";
         let user1Wins = "Player 1 wins";
         let user2Wins = "Player 2 wins";
         let aiWins = "Computer wins";
         let opponentWins = "";
         let result;
-        let userChoice = players[0].choice;
-        let opponentChoice = players[1].choice;
-        let computerChoice = players[1].choice;
 
-        if (players[1] instanceof classes.AI){
-            opponentChoice = computerChoice;
-        }
 
-        if(opponentChoice == "Rock"){
-            if(userChoice == "Paper" || userChoice == "Spock"){
+        if(this.playerTwo.choice == "Rock"){
+            if(this.playerOne.choice == "Paper" || this.playerOne.choice == "Spock"){
             result = user1Wins;
             }
-            else if(userChoice == "Rock"){
+            else if(this.playerOne.choice == "Rock"){
             result = draw;
             }
             else{
             result = opponentWins;
             }
         }
-        else if(opponentChoice == "Paper"){
-            if(userChoice == "Scissors" || userChoice == "Lizard"){
+        else if(this.playerTwo.choice == "Paper"){
+            if(this.playerOne.choice == "Scissors" || this.playerOne.choice == "Lizard"){
                 result = user1Wins;
             }
-            else if(userChoice == "Paper"){
+            else if(this.playerOne.choice == "Paper"){
                 result = draw;
             }
             else{
                 result = opponentWins;
             }
         }
-        else if(opponentChoice == "Scissors"){
-            if(userChoice == "Spock" || userChoice == "Rock"){
+        else if(this.playerTwo.choice == "Scissors"){
+            if(this.playerOne.choice == "Spock" || this.playerOne.choice == "Rock"){
                 result = user1Wins;
             }
-            else if(userChoice == "Scissors"){
+            else if(this.playerOne.choice == "Scissors"){
                 result = draw;
             }
             else{
                 result = opponentWins;
             }
         }   
-        else if(opponentChoice == "Lizard"){
-            if(userChoice == "Rock" || userChoice == "Scissors"){
+        else if(this.playerTwo.choice == "Lizard"){
+            if(this.playerOne.choice == "Rock" || this.playerOne.choice == "Scissors"){
                 result = user1Wins;
             }
-            else if(userChoice == "Lizard"){
+            else if(this.playerOne.choice == "Lizard"){
                 result = draw;
             }
             else{
                 result = opponentWins;
             }   
         }
-        else if(opponentChoice == "Spock"){
-            if(userChoice == "Lizard" || userChoice == "Paper"){
+        else if(this.playerTwo.choice == "Spock"){
+            if(this.playerOne.choice == "Lizard" || this.playerOne.choice == "Paper"){
                 result = user1Wins;
             }
-            else if(userChoice == "Spock"){
+            else if(this.playerOne.choice == "Spock"){
                 result = draw;
             }
             else{
@@ -156,40 +147,36 @@ class Game {
             }
         }
 
-        if (players[1] instanceof classes.AI && result == opponentWins){
+        if (this.playerTwo instanceof classes.AI && result == opponentWins){
             result = aiWins
         } else if (result == opponentWins){
                 result = user2Wins;
         }
 
         if(result == user1Wins){
-            players[0].record++;
+            this.playerOne.record++;
         } else if (result == aiWins || result == user2Wins){
-            players[1].record++;
+            this.playerTwo.record++;
         }
         return result;
     };
 
     //user selects gestures
-    playerChoose(numberPlayers,gestures,numberOfGames){
-        for(let i = 0; i < 2; i++){
-            if(numberOfGames){
-                numberPlayers[i].numberOfGamesToPlay = Number(numberOfGames);
-            }
-            numberPlayers[i].numberOfGamesPlayed++;
-        }
-        let playerChoice = numberPlayers[0].chooseRPSLS(gestures,numberPlayers[0]);
-        numberPlayers[0].choice = playerChoice;
-        if (!(numberPlayers[1] instanceof classes.AI)){
+    playerChoose(){
+        this.playerOne.numberOfGamesPlayed++;
+        this.playerTwo.numberOfGamesPlayed++;
+
+        let playerChoice = this.playerOne.chooseRPSLS(this.gestures,this.playerOne);
+        this.playerOne.choice = playerChoice;
+        if (!(this.playerTwo instanceof classes.AI)){
             console.log("Player 2 selection:")
-            let playerChoice2 = numberPlayers[1].chooseRPSLS(gestures,numberPlayers[1]);
-            numberPlayers[1].choice = playerChoice2;
+            let playerChoice2 = this.playerTwo.chooseRPSLS(this.gestures,this.playerTwo);
+            this.playerTwo.choice = playerChoice2;
         }
         else{
-            let aiChoice = numberPlayers[1].chooseRPSLS(gestures);
-            numberPlayers[1].choice = aiChoice;
+            let aiChoice = this.playerTwo.chooseRPSLS(this.gestures);
+            this.playerTwo.choice = aiChoice;
         }
-        return numberPlayers;
     }
 }
 
