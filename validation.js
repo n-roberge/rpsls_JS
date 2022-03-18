@@ -35,7 +35,7 @@ function gamesValid(input){
 
 //validates gestures
 function gesturesValid(input){
-    if (/^[0-4]+$/.test(input)){
+    if (/^[0-4]{1,1}$/.test(input)){
         return true;
     }
     else{

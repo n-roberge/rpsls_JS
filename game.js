@@ -76,7 +76,7 @@ class Game {
 
     //returns number of games
     selectGames(){
-        let numberOfGames = promptFor("How many games (3 or 5)?",gamesValid);
+        let numberOfGames = promptFor("How many games (3 or 5)? ",gamesValid);
             this.playerOne.numberOfGamesToPlay = Number(numberOfGames);
             this.playerTwo.numberOfGamesToPlay = Number(numberOfGames);
     };
